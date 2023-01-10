@@ -63,8 +63,9 @@ class SaleDetailController extends Controller
     public function store(Request $request)
     {
         $produk = Product::where('id', $request->id_produk)->first();
+        // return response()->json("Data berhasil disimpan", 200);
         if (!$produk) {
-            return response()->json('Data gagal disimpan', 200);
+            return response()->json('Data gagal disimpan', 404);
         }
         $saleDetail = SaleDetail::where('sale_id', $request->id_penjualan)
             ->where('product_id', $produk->id)

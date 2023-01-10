@@ -21,8 +21,9 @@
                                                 value="{{ $id_penjualan }}">
                                             <input type="text" class="form-control" name="id_produk" id="id_produk">
                                             <span class="input-group-btn">
-                                                <button onclick="tampilProduk()" class="btn btn-info btn-flat tampilProdukCoba"
-                                                    type="button" ><i class="fa fa-arrow-right"></i></button>
+                                                <button onclick="tampilProduk()"
+                                                    class="btn btn-info btn-flat tampilProdukCoba" type="button"><i
+                                                        class="fa fa-arrow-right"></i></button>
                                             </span>
                                         </div>
                                     </div>
@@ -114,24 +115,23 @@
 @push('scripts')
     <script>
         let table, table2;
-        $(document).ready(function () {
+        $(document).ready(function() {
             // console.log('ready');
             // $("#closed-sidebar-btn").click();
             // $(".tampilProdukCoba").click();
             $("#id_produk").focus();
         });
-        
+
         $(function() {
-            $("#submit-tambah-produk").submit(function (e) { 
+            $("#submit-tambah-produk").submit(function(e) {
                 e.preventDefault();
                 tambahProduk();
-                // clear the form
-                $("#id_produk").val("");
-                
+
             });
 
             table = $('.table-penjualan').DataTable({
                     responsive: true,
+                    select: true,
                     processing: true,
                     serverSide: true,
                     autoWidth: false,
@@ -199,7 +199,7 @@
                         'jumlah': jumlah
                     })
                     .done(response => {
-                            table.ajax.reload(() => loadForm($('#diskon').val(),  $('#dibayar').val()));
+                        table.ajax.reload(() => loadForm($('#diskon').val(), $('#dibayar').val()));
                     })
                     .fail(errors => {
                         alert('Tidak dapat mengubah data');
@@ -227,11 +227,16 @@
                 $(this).select();
             });
 
-            $('.btn-simpan').on('click', function() {
-                $('.form-penjualan').submit();
+            $('.form-penjualan').submit(function(e) {
+                e.preventDefault();
+                if ($('.total_item').text() == 0) {
+                    alert('Tidak ada produk yang dipilih');
+                    return;
+                }
+                sub
             });
 
-            $(document).keydown(function (e) {
+            $(document).keydown(function(e) {
                 if (e.key == 'Delete') {
                     $("#dibayar").focus();
                 }
@@ -253,11 +258,21 @@
         }
 
         function tambahProduk() {
+            idproduk = $("#id_produk").val()
             $.post('{{ route('transaksi.store') }}', $('.form-produk').serialize()).done(response => {
                 $('#id_produk').focus();
+                $("#id_produk").val("")
                 table.ajax.reload(() => loadForm($('#diskon').val()));
             }).fail(errors => {
-                alert('Tidak dapat menyimpan data');
+                $('#modal-produk').modal('show');
+                $('input[type="search"]').focus();
+                $('input[type="search"]').val(idproduk);
+                setTimeout(() => {
+                    $('input[type="search"]').focus();
+                }, 300);
+
+                $("#id_produk").val("");
+                // alert('Tidak dapat menyimpan data');
                 return;
             });
         }
