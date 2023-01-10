@@ -16,6 +16,7 @@ class ProductFactory extends Factory
     {
         
         return [
+            'id' => $this->faker->unique()->numberBetween(1000000000000, 9999999999999),
             'category_id' => substr(Category::all()->random()->name,0,3),
             'merk_id' => $this->faker->numberBetween(1, 5),
             'name' => $this->faker->name(),

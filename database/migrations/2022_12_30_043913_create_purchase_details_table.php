@@ -17,7 +17,7 @@ class CreatePurchaseDetailsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('purchase_id');
             $table->foreign('purchase_id')->references('id')->on('purchases');
-            $table->unsignedBigInteger('product_id');
+            $table->string('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->integer('qty');
             $table->integer('subtotal');

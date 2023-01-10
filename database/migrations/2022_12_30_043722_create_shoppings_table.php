@@ -15,7 +15,7 @@ class CreateShoppingsTable extends Migration
     {
         Schema::create('shoppings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
+            $table->string('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->integer('qty');
             $table->timestamps();

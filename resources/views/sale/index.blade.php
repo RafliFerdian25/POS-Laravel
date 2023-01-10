@@ -11,7 +11,7 @@
                     <div class="main-card mb-3 card">
                         <div class="card-body">
                             <h5 class="card-title text-center font-size-xlg">Kasir</h5>
-                            <form class="form-produk" onsubmit="tambahProduk()" >
+                            <form class="form-produk" id="submit-tambah-produk">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="id_produk" class="col-lg-3">Kode Produk</label>
@@ -115,13 +115,20 @@
     <script>
         let table, table2;
         $(document).ready(function () {
-            console.log('ready');
-            $("#closed-sidebar-btn").click();
-            $(".tampilProdukCoba").click();
+            // console.log('ready');
+            // $("#closed-sidebar-btn").click();
+            // $(".tampilProdukCoba").click();
+            $("#id_produk").focus();
         });
-
+        
         $(function() {
-            // $('body').addClass('sidebar-collapse');
+            $("#submit-tambah-produk").submit(function (e) { 
+                e.preventDefault();
+                tambahProduk();
+                // clear the form
+                $("#id_produk").val("");
+                
+            });
 
             table = $('.table-penjualan').DataTable({
                     responsive: true,
