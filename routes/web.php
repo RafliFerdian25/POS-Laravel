@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleDetailController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +24,8 @@ Route::get('/transaksi/nota-kecil', [SaleController::class, 'notaKecil'])->name(
 Route::get('/transaksi/{id}/data', [SaleDetailController::class, 'data'])->name('transaksi.data');
 Route::get('/transaksi/loadform/{diskon}/{total}/{diterima}', [SaleDetailController::class, 'loadForm'])->name('transaksi.load_form');
 Route::resource('/transaksi', SaleDetailController::class)
-    ->except('create', 'show', 'edit');
+->except('create', 'show', 'edit');
 
+Route::resource('/barang', ProductController::class);
 
 Route::get('/penjualan', [SaleDetailController::class, 'index'])->name('penjualan.index');

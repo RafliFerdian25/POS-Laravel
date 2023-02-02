@@ -186,7 +186,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="barang.html" id="navbar__barang">
+                                <a href="{{ url('/barang') }}" id="navbar__barang">
                                     <i class="metismenu-icon pe-7s-display2"></i>
                                     Barang
                                 </a>
@@ -258,7 +258,14 @@
     <!-- JS -->
     <script type="text/javascript" src="assets/scripts/main.js"></script>
     <script type="text/javascript" src="assets/scripts/script.js"></script>
-
+    <script>
+        // click
+        $(document).ready(function () {
+            setTimeout(() => {
+                $("#closed-sidebar-btn").click();
+            }, 1000);
+        })
+    </script>
     @stack('scripts')
 </body>
 
