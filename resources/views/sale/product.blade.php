@@ -1,6 +1,6 @@
 <div class="modal fade" data-bs-backdrop="false" id="modal-produk" tabindex="-1" role="dialog"
     aria-labelledby="modal-produk" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span
@@ -28,7 +28,7 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->unit }}</td>
                             <td>{{ $item->contain }}</td>
-                            <td>{{ $item->purchase_price }}</td>
+                            <td>{{ number_format($item->selling_price, 0, ',', '.'); }}</td>
                             <td>{{ $item->expired_date }}</td>
                             <td>{{ $item->stock }}</td>
                             <td>

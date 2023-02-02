@@ -228,12 +228,12 @@
             });
 
             $('.form-penjualan').submit(function(e) {
-                e.preventDefault();
                 if ($('.total_item').text() == 0) {
+                    e.preventDefault();
                     alert('Tidak ada produk yang dipilih');
                     return;
                 }
-                sub
+                
             });
 
             $(document).keydown(function(e) {
@@ -265,8 +265,8 @@
                 table.ajax.reload(() => loadForm($('#diskon').val()));
             }).fail(errors => {
                 $('#modal-produk').modal('show');
-                $('input[type="search"]').focus();
                 $('input[type="search"]').val(idproduk);
+                $('input[type="search"]').focus();
                 setTimeout(() => {
                     $('input[type="search"]').focus();
                 }, 300);
@@ -305,7 +305,7 @@
                     $('#bayar').val(response.dibayar);
 
                     $('#kembali').val('Rp.' + response.kembalirp);
-                    if ($('#dibayar').val() < $total) {
+                    if ($('#dibayar').val() < $total - diskon) {
                         $('.btn-simpan').attr('disabled', true);
                     } else {
                         $('.btn-simpan').attr('disabled', false);

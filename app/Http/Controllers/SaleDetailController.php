@@ -80,6 +80,8 @@ class SaleDetailController extends Controller
         $detail = new SaleDetail();
         $detail->sale_id = $request->id_penjualan;
         $detail->product_id = $produk->id;
+        $detail->selling_price = $produk->selling_price;
+        $detail->purchase_price = $produk->purchase_price;
         $detail->qty = 1;
         $detail->discount = $produk->discount;
         $detail->subtotal = $produk->selling_price - $produk->discount;
@@ -162,6 +164,7 @@ class SaleDetailController extends Controller
             $data[] = $row;
 
             $total += $item->product['selling_price'] * $item->qty - $item->discount * $item->qty;
+            $total_tanpa_diskon += $item->product['selling_price'] * $item->qty * $item->qty;
             $total_item += $item->qty;
         }
         $data[] = [

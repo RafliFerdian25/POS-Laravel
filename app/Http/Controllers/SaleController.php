@@ -43,20 +43,24 @@ class SaleController extends Controller
         $penjualan->total_price = $request->total;
         $penjualan->pay = $request->dibayar;
         $penjualan->change = $request->dibayar - $request->total;
-        $penjualan->profit = 0;
         $penjualan->discount = $request->diskon;
         $penjualan->status = true;
-        $penjualan->update();
-        
-        $detail = SaleDetail::where('sale_id', $penjualan->id_penjualan)->get();
-        foreach ($detail as $item) {
-            $item->diskon = $request->diskon;
-            $item->update();
 
+        $detail = SaleDetail::where('sale_id', $penjualan->id)->get();
+        foreach ($detail as $item) {
+            // $item->discount = $request->diskon;
+            // $item->update();
+            
             $produk = Product::find($item->product_id);
             $produk->stock -= $item->qty;
             $produk->update();
+
+            $profit = ($item->selling_price - $item->purchase_price) * $item->qty;
+            $penjualan->profit += $profit - ($item->discount * $item->qty);
+            $penjualan->discount += $item->discount;
         }
+        $penjualan->profit -= $request->diskon;
+        $penjualan->update();
 
         return redirect()->route('transaksi.selesai');
     }

@@ -22,10 +22,10 @@ function format_uang($angka)
             p {
                 display: block;
                 margin: 3px;
-                font-size: 10pt;
+                font-size: 12pt;
             }
             table td {
-                font-size: 9pt;
+                font-size: 11pt;
             }
             .text-center {
                 text-align: center;
@@ -70,7 +70,7 @@ function format_uang($angka)
         <p style="float: left;">{{ date('d-m-Y') }}</p>
     </div>
     <div class="clear-both" style="clear: both;"></div>
-    <p>No: $penjualan->id</p>
+    <p>No: KSR/{{ $penjualan->id }}</p>
     <p class="text-center">===================================</p>
 
     <br>
@@ -117,7 +117,10 @@ function format_uang($angka)
     </table>
 
     <p class="text-center">===================================</p>
-    <p class="text-center">-- TERIMA KASIH --</p>
+    <p class="text-center mb-3">-- TERIMA KASIH --</p>
+    <p class="text-center mb-3"></p>
+    <p class="text-center mb-3"></p>
+    
 
     <script>
         let body = document.body;

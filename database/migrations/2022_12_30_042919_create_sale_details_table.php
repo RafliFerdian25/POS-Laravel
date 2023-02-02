@@ -19,6 +19,8 @@ class CreateSaleDetailsTable extends Migration
             $table->foreign('sale_id')->references('id')->on('sales');
             $table->string('product_id');
             $table->foreign('product_id')->references('id')->on('products');
+            $table->integer('selling_price');
+            $table->integer('purchase_price');
             $table->integer('qty');
             $table->integer('discount');
             $table->integer('subtotal');

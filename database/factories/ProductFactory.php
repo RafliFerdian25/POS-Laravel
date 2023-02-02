@@ -14,7 +14,7 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
-        
+        $purchase_price = $this->faker->numberBetween(1000, 100000);
         return [
             'id' => $this->faker->unique()->numberBetween(1000000000000, 9999999999999),
             'category_id' => substr(Category::all()->random()->name,0,3),
@@ -22,8 +22,8 @@ class ProductFactory extends Factory
             'name' => $this->faker->name(),
             'unit' => $this->faker->randomElement(['pcs', 'box', 'pack']),
             'contain' => 1,
-            'purchase_price' => $this->faker->numberBetween(1000, 100000),
-            'selling_price' => $this->faker->numberBetween(1000, 100000),
+            'purchase_price' => $purchase_price,
+            'selling_price' => $purchase_price + $this->faker->numberBetween(1000, 10000),
             'wholesale_price' => $this->faker->numberBetween(1000, 100000),
             'expired_date' => $this->faker->date('Y-m-d', 'now'),
             'stock' => $this->faker->numberBetween(1, 100),
