@@ -27,5 +27,6 @@ Route::resource('/transaksi', SaleDetailController::class)
 ->except('create', 'show', 'edit');
 
 Route::resource('/barang', ProductController::class);
+Route::get('/barang/getProducts', [ProductController::class, 'getProducts'])->name('barang.getProducts');
 
 Route::get('/penjualan', [SaleDetailController::class, 'index'])->name('penjualan.index');

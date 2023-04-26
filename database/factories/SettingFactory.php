@@ -14,9 +14,9 @@ class SettingFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'address' => $this->faker->address(),
-            'phone' => $this->faker->phoneNumber(),
+            'name' => "Toko Rian",
+            'address' => "Ds. Gempolsewu, Kec. Rowosari, Kab. Kendal",
+            'phone' => "08122812890",
         ];
     }
 }

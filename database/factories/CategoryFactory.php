@@ -13,9 +13,9 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->name();
+        
         return [
-            'id' => substr($name, 0,3),
+            'id' => $singkat,
             'name' => $name,
         ];
     }

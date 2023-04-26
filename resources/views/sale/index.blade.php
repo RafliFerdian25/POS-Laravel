@@ -237,7 +237,7 @@
             });
 
             $(document).keydown(function(e) {
-                if (e.key == 'Delete') {
+                if (e.key == 'End') {
                     $("#dibayar").focus();
                 }
             });
@@ -297,11 +297,12 @@
             $('#total').val($('.total').text());
             $('#total_item').val($('.total_item').text());
             $total = parseInt($('.total').text());
+            diskon_produk = parseInt($('.diskon_produk').text()) + parseInt(diskon);
 
-            $.get(`{{ url('/transaksi/loadform') }}/${diskon}/${$('.total').text()}/${dibayar}`)
+            $.get(`{{ url('/transaksi/loadform') }}/${diskon_produk}/${$('.total').text()}/${dibayar}`)
                 .done(response => {
                     $('#subtotalrp').val('Rp. ' + response.subtotalrp);
-                    $('#totalbayar').val('Rp. ' + response.totalbayar);
+                    $('#totalbayar').val('Rp. ' + (response.totalbayar));
                     $('#bayar').val(response.dibayar);
 
                     $('#kembali').val('Rp.' + response.kembalirp);

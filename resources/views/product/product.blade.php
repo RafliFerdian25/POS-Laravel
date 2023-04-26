@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="col-3 text-center align-self-center">
-                <a href="{{ url("/barang/create") }}">
+                <a href="{{ url('/barang/create') }}">
                     <button class="btn btn-primary rounded-pill px-3" id="tambah-produk">Tambah</button>
                 </a>
             </div>
@@ -36,17 +36,19 @@
                             <table class="mb-0 table table__kategori" id="kategori">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+                                        <th>ID</th>
                                         <th>Nama Kategori</th>
                                         <th>Jumlah Barang</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>123456789012</td>
-                                        <td>Indomie goreng rendang</td>
-                                        <td>888</td>
-                                    </tr>
+                                    @foreach ($categories as $category)
+                                        <tr>
+                                            <td>{{ $category->category_id }}</td>
+                                            <td>{{ $category->name }}</td>
+                                            <td>{{ $category->jumlah }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -77,7 +79,7 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                {{-- <tbody>
                                     @foreach ($product as $item)
                                         <tr>
                                             <td>{{ $item->id }}</td>
@@ -92,13 +94,20 @@
                                                 <button class="btn btn-link btn-lg float-left px-0">
                                                     <i class="pe-7s-note"></i>
                                                 </button>
-                                                <button class="btn btn-link btn-lg float-right px-0 color__red1">
+                                                <form action="{{ url('/barang/' . $item->id) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')"
+                                                    class="btn btn-link btn-lg float-right px-0 color__red1">
                                                     <i class="pe-7s-trash"></i>
                                                 </button>
+                                                </form>
+
                                             </td>
                                         </tr>
                                     @endforeach
-                                </tbody>
+                                </tbody> --}}
                             </table>
                         </div>
                     </div>
@@ -109,3 +118,76 @@
     </div>
     <!-- END Section layouts   -->
 @endsection
+
+<script>
+    function deleteData(url) {
+        if (confirm('Yakin ingin menghapus data terpilih?')) {
+            $.post(url, {
+                    '_token': $("meta[name='csrf-token']").attr('content'),
+                    '_method': 'delete'
+                })
+                .done((response) => {
+                    // table.ajax.reload(() => loadForm($('#diskon').val()));
+                    alert('success');
+                })
+                .fail((errors) => {
+                    alert('Tidak dapat menghapus data');
+                    return;
+                });
+        }
+    }
+    let table_barang;
+    $(function() {
+
+        table_barang = $('#barang').DataTable({
+            responsive: true,
+            select: true,
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('barang.getProducts') }}",
+            columns: [{
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'unit',
+                    name: 'unit'
+                },
+                {
+                    data: 'purchase_price',
+                    name: 'purchase_price'
+                },
+                {
+                    data: 'selling_price',
+                    name: 'selling_price'
+                },
+                {
+                    data: 'wholesale_price',
+                    name: 'wholesale_price'
+                },
+                {
+                    data: 'stock',
+                    name: 'stock'
+                },
+                {
+                    data: 'expired_date',
+                    name: 'expired_date'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                }
+            ]
+        });
+    });
+
+    $(document).ready(function() {
+
+    });
+</script>

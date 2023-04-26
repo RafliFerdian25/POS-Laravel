@@ -1,8 +1,8 @@
 <?php
-function format_uang($angka)
-{
-    return number_format($angka, 0, ',', '.');
-}
+// function format_uang($angka)
+// {
+//     return number_format($angka, 0, ',', '.');
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">

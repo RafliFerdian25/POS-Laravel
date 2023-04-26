@@ -20,7 +20,7 @@ class SaleDetailController extends Controller
         $id_penjualan = session('id_penjualan');
         $penjualan = Sale::where('id', $id_penjualan)->first();
         $penjualan_last = Sale::get()->last();
-        if ($penjualan_last != null && $penjualan_last->status == false && $penjualan_last->status != null) {
+        if ($penjualan_last != null && $penjualan_last->status == false) {
             $id_penjualan = $penjualan_last->id;
             session(['id_penjualan' => $penjualan_last->id]);
         } else if (empty($id_penjualan) || !$penjualan || $penjualan_last->status == true) {
@@ -41,7 +41,8 @@ class SaleDetailController extends Controller
         }
 
         $product = Product::orderBy('name')->get();
-        return view('sale.index', compact('product', 'id_penjualan'));
+        $title = 'Toko Rian | Kasir';
+        return view('sale.index', compact('product', 'id_penjualan', 'title'));
     }
 
     /**
@@ -149,6 +150,7 @@ class SaleDetailController extends Controller
         $data = array();
         $total = 0;
         $total_item = 0;
+        $diskon_produk = 0;
 
         foreach ($detail as $item) {
             $row = array();
@@ -163,13 +165,16 @@ class SaleDetailController extends Controller
                                 </div>';
             $data[] = $row;
 
-            $total += $item->product['selling_price'] * $item->qty - $item->discount * $item->qty;
-            $total_tanpa_diskon += $item->product['selling_price'] * $item->qty * $item->qty;
+            // $total += $item->product['selling_price'] * $item->qty - $item->discount * $item->qty;
+            $total += $item->product['selling_price'] * $item->qty;
+            $diskon_produk += $item->discount * $item->qty;
+            // $total_tanpa_diskon += $item->product['selling_price'] * $item->qty * $item->qty;
             $total_item += $item->qty;
         }
         $data[] = [
             'kode_produk' => '
                 <div class="total d-none">' . $total . '</div>
+                <div class="diskon_produk d-none">' . $diskon_produk . '</div>
                 <div class="total_item d-none">' . $total_item . '</div>',
             'nama_produk' => '',
             'harga_jual'  => '',

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Toko Rian | Kasir</title>
+    <title>{{ $title }}</title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
@@ -15,8 +15,8 @@
 
 
     <!-- CSS -->
-    <link href="assets/css/main.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -99,11 +99,11 @@
                     <div class="header-btn-lg pr-0">
                         <div class="widget-content p-0">
                             <div class="widget-content-wrapper">
-                                <div class="widget-content-left">
+                                {{-- <div class="widget-content-left">
                                     <div class="btn-group">
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                             class="p-0 btn">
-                                            <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg"
+                                            <img width="42" class="rounded-circle" src="{{ asset('assets/images/avatars/1.jpg') }}"
                                                 alt="">
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                         </a>
@@ -132,7 +132,7 @@
                                         class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
                                         <i class="fa text-white fa-calendar pr-1 pl-1"></i>
                                     </button>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -158,13 +158,13 @@
                                     Kasir
                                 </a>
                             </li>
-                            <li class="mm-active">
+                            <li class="">
                                 <a href="#">
                                     <i class="metismenu-icon pe-7s-car"></i>
                                     Laporan
-                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                    {{-- <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> --}}
                                 </a>
-                                <ul class="mm-show">
+                                <ul class="mm-hide">
                                     <li>
                                         <a href="laporan_harian.html" id="navbar_harian">
                                             <i class="metismenu-icon">
@@ -256,8 +256,8 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js">
     </script>
     <!-- JS -->
-    <script type="text/javascript" src="assets/scripts/main.js"></script>
-    <script type="text/javascript" src="assets/scripts/script.js"></script>
+    <script type="text/javascript" src="{{ asset('assets/scripts/main.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/scripts/script.js') }}"></script>
     <script>
         // click
         $(document).ready(function () {
