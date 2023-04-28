@@ -3,19 +3,20 @@
 @section('content')
     <!-- Section Layouts  -->
     <div class="app-main__inner">
-        <!-- tambah section -->
-        <div class="tambah__section">
-            <div class="tambah__body">
-                <div class="tambah__content card">
+        <!-- ubah section -->
+        <div class="ubah__section">
+            <div class="ubah__body">
+                <div class="ubah__content card">
                     <div class="title__card text-center">
-                        Tambah Barang
+                        Ubah Barang
                     </div>
-                    <form action="/barang" method="POST">
+                    <form action="{{ route('barang.update', $product->id) }}" method="POST">
+                        @method('PUT')
                         @csrf
                         <div class="row mb-3">
                             <label for="id" class="col-sm-2 col-form-label">Kode Barang</label>
                             <div class="col-sm-10">
-                                <input required value="{{ old('id') }}" type="number"
+                                <input required value="{{ $product->id }}" type="number"
                                     class="form-control rounded__10 @error('id')
                                 is-invalid
                             @enderror"
@@ -30,7 +31,7 @@
                         <div class="row mb-3">
                             <label for="name" class="col-sm-2 col-form-label">Nama Barang</label>
                             <div class="col-sm-10">
-                                <input required value="{{ old('name') }}" type="text"
+                                <input required value="{{ $product->name }}" type="text"
                                     class="form-control rounded__10 @error('name')
                                 is-invalid
                             @enderror"
@@ -50,12 +51,11 @@
                                 is-invalid
                             @enderror"
                                     name="unit" aria-label="Default select example">
-                                    <option value="PCS">Pieces</option>
-                                    <option value="LSN">Lusin</option>
-                                    <option value="PAK">Pak</option>
-                                    <option value="BOX">Box</option>
-                                    <option value="DUS">Dus</option>
-                                    <option value="SCT">Sachet</option>
+                                    @foreach ($units as $unit)
+                                        <option value="{{ $unit['id'] }}" @if ( $unit['id'] == $product->unit)
+                                            selected
+                                        @endif>{{ $unit['name'] }}</option>
+                                    @endforeach
                                 </select>
                                 @error('unit')
                                     <div class="invalid-feedback">
@@ -67,7 +67,7 @@
                         <div class="row mb-3">
                             <label for="contain" class="col-sm-2 col-form-label">Isi</label>
                             <div class="col-sm-10">
-                                <input required value="{{ old('contain') }}" type="number"
+                                <input required value="{{ $product->contain }}" type="number"
                                     class="form-control rounded__10 @error('contain')
                                 is-invalid
                             @enderror"
@@ -82,7 +82,7 @@
                         <div class="row mb-3">
                             <label for="purchase_price" class="col-sm-2 col-form-label">Harga Pokok</label>
                             <div class="col-sm-10">
-                                <input required value="{{ old('purchase_price') }}" type="number"
+                                <input required value="{{ $product->purchase_price }}" type="number"
                                     class="form-control rounded__10 @error('purchase_price')
                                 is-invalid
                             @enderror"
@@ -97,7 +97,7 @@
                         <div class="row mb-3">
                             <label for="selling_price" class="col-sm-2 col-form-label">Harga Jual</label>
                             <div class="col-sm-10">
-                                <input required value="{{ old('selling_price') }}" type="number"
+                                <input required value="{{ $product->selling_price }}" type="number"
                                     class="form-control rounded__10 @error('selling_price')
                                 is-invalid
                             @enderror"
@@ -112,7 +112,7 @@
                         <div class="row mb-3">
                             <label for="wholesale_price" class="col-sm-2 col-form-label">Harga Grosir</label>
                             <div class="col-sm-10">
-                                <input required value="{{ old('wholesale_price') }}" type="number"
+                                <input required value="{{ $product->wholesale_price }}" type="number"
                                     class="form-control rounded__10 @error('wholesale_price')
                                 is-invalid
                             @enderror"
@@ -127,7 +127,7 @@
                         <div class="row mb-3">
                             <label for="discount" class="col-sm-2 col-form-label">Discount</label>
                             <div class="col-sm-10">
-                                <input required value="{{ old('discount') }}" type="number"
+                                <input required value="{{ $product->discount }}" type="number"
                                     class="form-control rounded__10 @error('discount')
                                 is-invalid
                             @enderror"
@@ -142,7 +142,7 @@
                         <div class="row mb-3">
                             <label for="stock" class="col-sm-2 col-form-label">Stock</label>
                             <div class="col-sm-10">
-                                <input required value="{{ old('stock') }}" type="number"
+                                <input required value="{{ $product->stock }}" type="number"
                                     class="form-control rounded__10 @error('stock')
                                 is-invalid
                             @enderror"
@@ -157,7 +157,7 @@
                         <div class="row mb-3">
                             <label for="expired_date" class="col-sm-2 col-form-label">Expired Date</label>
                             <div class="col-sm-10">
-                                <input required value="{{ old('expired_date') }}" type="date"
+                                <input required value="{{ $product->expired_date }}" type="date"
                                     class="form-control rounded__10 @error('expired_date')
                                 is-invalid
                             @enderror"
@@ -178,7 +178,9 @@
                             @enderror"
                                     name="category_id" aria-label="Default select example">
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }} </option>
+                                        <option value="{{ $category->id }}" @if ($category->id == $product->category_id)
+                                            selected
+                                            @endif>{{ $category->name }} </option>
                                     @endforeach
                                 </select>
                                 @error('category_id')
@@ -197,7 +199,9 @@
                             @enderror"
                                     name="merk_id" aria-label="Default select example">
                                     @foreach ($merks as $merk)
-                                        <option value="{{ $merk->id }}">{{ $merk->name }}</option>
+                                        <option value="{{ $merk->id }}" @if ($merk->id == $product->merk_id)
+                                            selected
+                                            @endif>{{ $merk->name }} </option>
                                     @endforeach
                                 </select>
                                 @error('merk_id')
@@ -214,7 +218,7 @@
                 </div>
             </div>
         </div>
-        <!-- end tambah section -->
+        <!-- end ubah section -->
 
     </div>
     <!-- END Section layouts   -->

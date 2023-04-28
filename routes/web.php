@@ -26,7 +26,9 @@ Route::get('/transaksi/loadform/{diskon}/{total}/{diterima}', [SaleDetailControl
 Route::resource('/transaksi', SaleDetailController::class)
 ->except('create', 'show', 'edit');
 
+Route::get('/barang/data', [ProductController::class, 'data'])->name('barang.data');
+Route::get('/kategori/{id}/edit', [ProductController::class, 'editCategory'])->name('kategori.edit');
+Route::get('/kategori/{id}', [ProductController::class, 'updateCategory'])->name('kategori.update');
 Route::resource('/barang', ProductController::class);
-Route::get('/barang/getProducts', [ProductController::class, 'getProducts'])->name('barang.getProducts');
 
 Route::get('/penjualan', [SaleDetailController::class, 'index'])->name('penjualan.index');
