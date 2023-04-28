@@ -22,10 +22,10 @@
             p {
                 display: block;
                 margin: 3px;
-                font-size: 12pt;
+                font-size: 10pt;
             }
             table td {
-                font-size: 11pt;
+                font-size: 10pt;
             }
             .text-center {
                 text-align: center;
@@ -36,8 +36,7 @@
     
             @media print {
                 @page {
-                    margin: 0;
-                    size: 75mm 
+                    margin: 0mm;
         ';
     ?>
     <?php
@@ -46,7 +45,7 @@
     <?php
     $style .= '
                 html, body {
-                    width: 70mm;
+                    width: 95%;
                 }
                 .btn-print {
                     display: none;
@@ -62,7 +61,7 @@
 <body onload="window.print()">
     <button class="btn-print" style="position: absolute; right: 1rem; top: rem;" onclick="window.print()">Print</button>
     <div class="text-center">
-        <h3 style="margin-bottom: 5px;">{{ strtoupper($setting->name) }}</h3>
+        <h4 style="margin-bottom: 5px;">{{ strtoupper($setting->name) }}</h4>
         <p>{{ strtoupper($setting->address) }}</p>
     </div>
     <br>

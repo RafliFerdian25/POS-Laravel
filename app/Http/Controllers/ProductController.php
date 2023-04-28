@@ -21,7 +21,7 @@ class ProductController extends Controller
     {
         $title = 'Toko Rian | Barang';
         $product = Product::orderBy('name')->get();
-        $categories = DB::table('products')->join('categories', 'categories.id', '=', 'products.category_id')->selectRaw('count(products.id) as jumlah, category_id, categories.name')->groupBy('category_id')->get();
+        $categories = DB::table('categories')->leftJoin('products', 'categories.id', '=', 'products.category_id')->selectRaw('count(products.id) as jumlah, categories.id as category_id, categories.name')->groupBy('categories.id')->get();
         return view('product.product', compact('product', 'categories', 'title'));
     }
     public function data()
@@ -198,36 +198,6 @@ class ProductController extends Controller
 
         // jika data berhasil ditambahkan, akan kembali ke halaman utama
         return redirect()->route('barang.index')->with('success', 'Produk berhasil diupdate');
-    }
-
-    public function editCategory($id)
-    {
-        // menyeleksi data product berdasarkan id yang dipilih
-        $category = Category::findOrFail($id);
-        $title = 'Toko Rian | Barang';
-        return view('category.update', compact('category', 'title'));
-    }
-
-    public function updateCategory(Request $request, $id)
-    {
-        // menyeleksi data yang akan diinputkan
-        if ($request->id == $id) {
-            $validated = $request->validate([
-                'id' => 'required',
-                'name' => 'required',
-            ]);
-        } else {
-            $validated = $request->validate([
-                'id' => 'required|unique:categories',
-                'name' => 'required',
-            ]);
-        }
-
-        // mengupdate data di table Categoriess
-        Category::whereId($id)->update($validated);
-
-        // jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('barang.index')->with('success', 'Kategori berhasil diupdate');
     }
 
     /**

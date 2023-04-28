@@ -27,8 +27,12 @@ Route::resource('/transaksi', SaleDetailController::class)
 ->except('create', 'show', 'edit');
 
 Route::get('/barang/data', [ProductController::class, 'data'])->name('barang.data');
-Route::get('/kategori/{id}/edit', [ProductController::class, 'editCategory'])->name('kategori.edit');
-Route::get('/kategori/{id}', [ProductController::class, 'updateCategory'])->name('kategori.update');
 Route::resource('/barang', ProductController::class);
+// Route::get('/kategori/create', [ProductController::class, 'createCategory'])->name('kategori.create');
+// Route::POST('/kategori', [ProductController::class, 'storeCategory'])->name('kategori.store');
+// Route::get('/kategori/{id}/edit', [ProductController::class, 'editCategory'])->name('kategori.edit');
+// Route::delete('/kategori/{id}', [ProductController::class, 'destroyCategory'])->name('kategori.destroy');
+// Route::PUT('/kategori/{id}', [ProductController::class, 'updateCategory'])->name('kategori.update');
+Route::resource('/kategori', ProductController::class);
 
 Route::get('/penjualan', [SaleDetailController::class, 'index'])->name('penjualan.index');

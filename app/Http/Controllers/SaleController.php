@@ -67,13 +67,15 @@ class SaleController extends Controller
 
     public function selesai()
     {
+        $title = 'Toko Rian | Nota';
         $setting = Setting::first();
 
-        return view('sale.selesai', compact('setting'));
+        return view('sale.selesai', compact('setting', 'title'));
     }
 
     public function notaKecil()
     {
+        $title = 'Toko Rian | Nota';
         $setting = Setting::first();
         // dd($setting);
         $penjualan = Sale::find(session('id_penjualan'));
@@ -84,7 +86,7 @@ class SaleController extends Controller
             ->where('sale_id', session('id_penjualan'))
             ->get();
         
-        return view('sale.nota_kecil', compact('setting', 'penjualan', 'detail'));
+        return view('sale.nota_kecil', compact('setting', 'penjualan', 'detail', 'title'));
     }
 
     /**
