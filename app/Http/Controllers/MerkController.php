@@ -2,20 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Merk;
 use Illuminate\Http\Request;
 
 class MerkController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -23,7 +14,8 @@ class MerkController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'Toko Rian | Kategori';
+        return view('merk.create', compact('title'));
     }
 
     /**
@@ -34,18 +26,16 @@ class MerkController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // menyeleksi data yang akan diinputkan
+        $validated = $request->validate([
+            'name' => 'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        // menginput data ke table products
+        Merk::create($validated);
+
+        // jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect()->route('kategori.index')->with('success', 'Berhasil menambahkan merk.');
     }
 
     /**
@@ -56,7 +46,9 @@ class MerkController extends Controller
      */
     public function edit($id)
     {
-        //
+        $merk = Merk::findOrFail($id);
+        $title = 'Toko Rian | Kategori';
+        return view('merk.update', compact('merk', 'title'));
     }
 
     /**
@@ -68,7 +60,9 @@ class MerkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate(['name' => 'required']);
+        Merk::where('id', $id)->update($validated);
+        return redirect()->route('kategori.index')->with('success', 'Berhasil mengubah merk.');
     }
 
     /**
@@ -79,6 +73,7 @@ class MerkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Merk::destroy($id);
+        return redirect()->route('kategori.index')->with('success', 'Berhasil menghapus merk.');
     }
 }

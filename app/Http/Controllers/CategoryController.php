@@ -29,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $title = 'Toko Rian | Barang';
+        $title = 'Toko Rian | Kategori';
         return view('category.create', compact('title'));
     }
 
@@ -67,7 +67,7 @@ class CategoryController extends Controller
         // menyeleksi data product berdasarkan id yang dipilih
         $category = DB::table('categories')->find($id);
         // dd($category);
-        $title = 'Toko Rian | Barang';
+        $title = 'Toko Rian | Kategori';
         return view('category.update', compact('category', 'title'));
     }
 

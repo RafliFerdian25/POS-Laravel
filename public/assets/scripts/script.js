@@ -29,6 +29,8 @@ $(document).ready(function () {
     $("#navbar__dashboard").addClass("mm-active");
   } else if (document.title == "Toko Rian | Barang") {
     $("#navbar__barang").addClass("mm-active");
+  } else if (document.title == "Toko Rian | Kategori") {
+    $("#navbar__kategori").addClass("mm-active");
   } else if (document.title == "Toko Rian | Laporan Harian") {
     $("#navbar_harian").addClass("mm-active");
   } else if (document.title == "Toko Rian | Laporan Bulanan") {

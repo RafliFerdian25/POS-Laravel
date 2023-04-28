@@ -192,7 +192,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/kategori') }}">
+                                <a href="{{ url('/kategori') }}"  id="navbar__kategori">
                                     <i class="metismenu-icon pe-7s-note2"></i>
                                     Kategori
                                 </a>
