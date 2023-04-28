@@ -192,9 +192,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="dashboard-boxes.html">
-                                    <i class="metismenu-icon pe-7s-display2"></i>
-                                    Dashboard Boxes
+                                <a href="{{ url('/kategori') }}">
+                                    <i class="metismenu-icon pe-7s-note2"></i>
+                                    Kategori
                                 </a>
                             </li>
                             <li>

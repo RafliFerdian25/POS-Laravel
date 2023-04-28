@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -13,7 +15,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            "title" => 'Toko Rian | Kategori',
+            "categories" => Category::all()
+        ];
+        return view('category.index')->with($data);
     }
 
     /**
@@ -41,22 +47,13 @@ class CategoryController extends Controller
             'name' => 'required',
         ]);
 
+        $validated['id'] = strtoupper($validated['id']);
+
         // menginput data ke table products
         Category::create($validated);
 
         // jika data berhasil ditambahkan, akan kembali ke halaman utama
         return redirect()->route('barang.index')->with('success', 'Berhasil menambahkan kategori.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -95,7 +92,7 @@ class CategoryController extends Controller
                 'name' => 'required',
             ]);
         }
-
+        $validated['id'] = strtoupper($validated['id']);
         // mengupdate data di table Categoriess
         Category::whereId($id)->update($validated);
 

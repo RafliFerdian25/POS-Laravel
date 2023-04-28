@@ -14,6 +14,10 @@ class Category extends Model
         'name',
     ];
 
+    protected $casts = [
+        'id' => 'string',
+    ];
+
     public function products()
     {
         return $this->hasMany(Product::class);

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleDetailController;
+use App\Http\Controllers\CategoryController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -27,12 +28,7 @@ Route::resource('/transaksi', SaleDetailController::class)
 ->except('create', 'show', 'edit');
 
 Route::get('/barang/data', [ProductController::class, 'data'])->name('barang.data');
-Route::resource('/barang', ProductController::class);
-// Route::get('/kategori/create', [ProductController::class, 'createCategory'])->name('kategori.create');
-// Route::POST('/kategori', [ProductController::class, 'storeCategory'])->name('kategori.store');
-// Route::get('/kategori/{id}/edit', [ProductController::class, 'editCategory'])->name('kategori.edit');
-// Route::delete('/kategori/{id}', [ProductController::class, 'destroyCategory'])->name('kategori.destroy');
-// Route::PUT('/kategori/{id}', [ProductController::class, 'updateCategory'])->name('kategori.update');
-Route::resource('/kategori', ProductController::class);
+Route::resource('/barang', ProductController::class)->except('show');
+Route::resource('/kategori', CategoryController::class)->except('show');
 
 Route::get('/penjualan', [SaleDetailController::class, 'index'])->name('penjualan.index');
