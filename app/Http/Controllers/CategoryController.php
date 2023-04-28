@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Merk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,11 +16,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = [
-            "title" => 'Toko Rian | Kategori',
-            "categories" => Category::all()
-        ];
-        return view('category.index')->with($data);
+        $title = 'Toko Rian | Kategori';
+        $categories = Category::all();
+        $merks = Merk::all();
+        return view('category.index', compact('categories', 'title', 'merks'));
     }
 
     /**
