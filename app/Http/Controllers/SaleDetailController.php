@@ -41,7 +41,7 @@ class SaleDetailController extends Controller
         }
 
         $product = Product::orderBy('name')->get();
-        $title = 'Toko Rian | Kasir';
+        $title = 'POS TOKO | Kasir';
         return view('sale.index', compact('product', 'id_penjualan', 'title'));
     }
 

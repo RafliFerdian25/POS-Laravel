@@ -67,7 +67,7 @@ class SaleController extends Controller
 
     public function selesai()
     {
-        $title = 'Toko Rian | Nota';
+        $title = 'POS TOKO | Nota';
         $setting = Setting::first();
 
         return view('sale.selesai', compact('setting', 'title'));
@@ -75,7 +75,7 @@ class SaleController extends Controller
 
     public function notaKecil()
     {
-        $title = 'Toko Rian | Nota';
+        $title = 'POS TOKO | Nota';
         $setting = Setting::first();
         // dd($setting);
         $penjualan = Sale::find(session('id_penjualan'));

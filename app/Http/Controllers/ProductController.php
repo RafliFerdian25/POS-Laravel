@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $title = 'Toko Rian | Barang';
+        $title = 'POS TOKO | Barang';
         $product = Product::orderBy('name')->get();
         $categories = DB::table('categories')->leftJoin('products', 'categories.id', '=', 'products.category_id')->selectRaw('count(products.id) as jumlah, categories.id as category_id, categories.name')->groupBy('categories.id')->get();
         return view('product.product', compact('product', 'categories', 'title'));
@@ -56,7 +56,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $title = 'Toko Rian | Barang';
+        $title = 'POS TOKO | Barang';
         $categories = DB::table('categories')->get();
         $merks = Merk::orderBy('name')->get();
         return view('product.create', compact('categories',  'merks', 'title'));
@@ -109,7 +109,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $categories = DB::table('categories')->get();
         $merks = Merk::orderBy('name')->get();
-        $title = 'Toko Rian | Barang';
+        $title = 'POS TOKO | Barang';
         $units = [
             [
                 'id' => 'PCS',

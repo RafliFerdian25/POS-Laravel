@@ -25,20 +25,22 @@ $(document).ready(function () {
 
 //Navbar
 $(document).ready(function () {
-  if (document.title == "Toko Rian | Dashboard") {
+  if (document.title == "POS TOKO | Dashboard") {
     $("#navbar__dashboard").addClass("mm-active");
-  } else if (document.title == "Toko Rian | Barang") {
+  } else if (document.title == "POS TOKO | Barang") {
     $("#navbar__barang").addClass("mm-active");
-  } else if (document.title == "Toko Rian | Kategori") {
+  } else if (document.title == "POS TOKO | Kategori") {
     $("#navbar__kategori").addClass("mm-active");
-  } else if (document.title == "Toko Rian | Laporan Harian") {
+  } else if (document.title == "POS TOKO | Laporan Harian") {
     $("#navbar_harian").addClass("mm-active");
-  } else if (document.title == "Toko Rian | Laporan Bulanan") {
+  } else if (document.title == "POS TOKO | Laporan Bulanan") {
     $("#navbar_bulanan").addClass("mm-active");
-  } else if (document.title == "Toko Rian | Laporan Tahunan") {
+  } else if (document.title == "POS TOKO | Laporan Tahunan") {
     $("#navbar_tahunan").addClass("mm-active");
-  } else if (document.title == "Toko Rian | Kasir") {
+  } else if (document.title == "POS TOKO | Kasir") {
     $("#navbar__kasir").addClass("mm-active");
+  } else if (document.title == "POS TOKO | Supplier") {
+    $("#navbar__supplier").addClass("mm-active");
   }
 });
 

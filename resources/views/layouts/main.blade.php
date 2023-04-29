@@ -153,14 +153,14 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/penjualan') }}" id="navbar__kasir">
+                                <a href="{{ route('penjualan.index') }}" id="navbar__kasir">
                                     <i class="metismenu-icon pe-7s-diamond"></i>
                                     Kasir
                                 </a>
                             </li>
                             <li class="">
                                 <a href="#">
-                                    <i class="metismenu-icon pe-7s-car"></i>
+                                    <i class="metismenu-icon pe-7s-note2"></i>
                                     Laporan
                                     {{-- <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> --}}
                                 </a>
@@ -198,9 +198,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="forms-controls.html">
-                                    <i class="metismenu-icon pe-7s-mouse">
-                                    </i>Forms Controls
+                                <a href="{{ url('/supplier') }}" id="navbar__supplier">
+                                    <i class="metismenu-icon pe-7s-car">
+                                    </i>Supplier
                                 </a>
                             </li>
                             <li>

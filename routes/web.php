@@ -5,7 +5,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleDetailController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MerkController;
-use App\Models\Product;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,5 +32,6 @@ Route::get('/barang/data', [ProductController::class, 'data'])->name('barang.dat
 Route::resource('/barang', ProductController::class)->except('show');
 Route::resource('/kategori', CategoryController::class)->except('show');
 Route::resource('/merk', MerkController::class)->except('show', 'index');
+Route::resource('/supplier', SupplierController::class)->except('show');
 
 Route::get('/penjualan', [SaleDetailController::class, 'index'])->name('penjualan.index');

@@ -14,7 +14,7 @@ class MerkController extends Controller
      */
     public function create()
     {
-        $title = 'Toko Rian | Kategori';
+        $title = 'POS TOKO | Kategori';
         return view('merk.create', compact('title'));
     }
 
@@ -47,7 +47,7 @@ class MerkController extends Controller
     public function edit($id)
     {
         $merk = Merk::findOrFail($id);
-        $title = 'Toko Rian | Kategori';
+        $title = 'POS TOKO | Kategori';
         return view('merk.update', compact('merk', 'title'));
     }
 

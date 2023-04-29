@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $title = 'Toko Rian | Kategori';
+        $title = 'POS TOKO | Kategori';
         $categories = Category::all();
         $merks = Merk::all();
         return view('category.index', compact('categories', 'title', 'merks'));
@@ -29,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $title = 'Toko Rian | Kategori';
+        $title = 'POS TOKO | Kategori';
         return view('category.create', compact('title'));
     }
 
@@ -67,7 +67,7 @@ class CategoryController extends Controller
         // menyeleksi data product berdasarkan id yang dipilih
         $category = DB::table('categories')->find($id);
         // dd($category);
-        $title = 'Toko Rian | Kategori';
+        $title = 'POS TOKO | Kategori';
         return view('category.update', compact('category', 'title'));
     }
 
