@@ -31,8 +31,8 @@ $(document).ready(function () {
     $("#navbar__barang").addClass("mm-active");
   } else if (document.title == "POS TOKO | Kategori") {
     $("#navbar__kategori").addClass("mm-active");
-  } else if (document.title == "POS TOKO | Laporan Harian") {
-    $("#navbar_harian").addClass("mm-active");
+  } else if (document.title == "POS TOKO | Laporan") {
+    $("#navbar_laporan").addClass("mm-active");
   } else if (document.title == "POS TOKO | Laporan Bulanan") {
     $("#navbar_bulanan").addClass("mm-active");
   } else if (document.title == "POS TOKO | Laporan Tahunan") {

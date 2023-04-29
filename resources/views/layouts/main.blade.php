@@ -159,28 +159,16 @@
                                 </a>
                             </li>
                             <li class="">
-                                <a href="#">
+                                <a href="#" id="navbar_laporan">
                                     <i class="metismenu-icon pe-7s-note2"></i>
                                     Laporan
-                                    {{-- <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> --}}
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul class="mm-hide">
                                     <li>
-                                        <a href="laporan_harian.html" id="navbar_harian">
-                                            <i class="metismenu-icon">
-                                            </i>Harian
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="laporan_bulanan.html" id="navbar_bulanan">
+                                        <a href="{{ url('/laporan/bulanan') }}" id="navbar_bulanan">
                                             <i class="metismenu-icon">
                                             </i>Bulanan
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="laporan_tahunan.html" id="navbar_tahunan">
-                                            <i class="metismenu-icon">
-                                            </i>Tahunan
                                         </a>
                                     </li>
                                 </ul>

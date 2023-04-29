@@ -28,10 +28,17 @@ Route::get('/transaksi/loadform/{diskon}/{total}/{diterima}', [SaleDetailControl
 Route::resource('/transaksi', SaleDetailController::class)
 ->except('create', 'show', 'edit');
 
+// Barang
 Route::get('/barang/data', [ProductController::class, 'data'])->name('barang.data');
 Route::resource('/barang', ProductController::class)->except('show');
+
+// Kategori
 Route::resource('/kategori', CategoryController::class)->except('show');
 Route::resource('/merk', MerkController::class)->except('show', 'index');
 Route::resource('/supplier', SupplierController::class)->except('show');
 
+// Penjualan
 Route::get('/penjualan', [SaleDetailController::class, 'index'])->name('penjualan.index');
+
+// Laporan
+Route::get('/laporan/bulanan', [SaleController::class, 'laporanBulanan'])->name('laporan.bulanan');

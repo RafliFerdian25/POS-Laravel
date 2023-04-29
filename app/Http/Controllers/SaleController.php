@@ -10,24 +10,6 @@ use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -50,7 +32,7 @@ class SaleController extends Controller
         foreach ($detail as $item) {
             // $item->discount = $request->diskon;
             // $item->update();
-            
+
             $produk = Product::find($item->product_id);
             $produk->stock -= $item->qty;
             $produk->update();
@@ -85,52 +67,22 @@ class SaleController extends Controller
         $detail = SaleDetail::with('product')
             ->where('sale_id', session('id_penjualan'))
             ->get();
-        
+
         return view('sale.nota_kecil', compact('setting', 'penjualan', 'detail', 'title'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Sale $sale)
+    public function laporanBulanan()
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Sale $sale)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Sale $sale)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Sale $sale)
-    {
-        //
+        $title = 'POS TOKO | Laporan';
+        $setting = Setting::first();
+        $sales = Sale::whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('Y'))
+            ->orderBy('id', 'desc')
+            ->get();
+        $report = Sale::whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('Y'))
+            ->selectRaw('sum(total_price) as income, sum(profit) as profit, sum(id) as total_transaction, sum(total_item) as total_item')
+            ->get();
+        return view('report.monthly', compact('setting', 'sales', 'title', 'report'));
     }
 }
