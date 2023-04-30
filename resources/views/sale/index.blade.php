@@ -71,7 +71,8 @@
                                     <!-- diskon -->
                                     <div class="checkout__diskon row">
                                         <h6 class="col-5 color__abu">Diskon</h6>
-                                        <input type="number" name="diskon" id="diskon" value="0"
+                                        <input type="text" name="diskon" id="diskon" value="0"
+                                            pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" data-type="currency"
                                             class="form-control col-7 color__abu text-end">
                                     </div>
                                 </div>
@@ -233,7 +234,7 @@
                     alert('Tidak ada produk yang dipilih');
                     return;
                 }
-                
+
             });
 
             $(document).keydown(function(e) {

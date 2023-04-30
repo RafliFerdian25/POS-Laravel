@@ -120,7 +120,7 @@
                         <tbody>
                             @foreach ($sales as $sale)
                                 <tr>
-                                    <th scope="row">{{ $sale->created_at }}</th>
+                                    <td scope="row">{{ $sale->created_at }}</td>
                                     <td>{{ $sale->id }}</td>
                                     <td>{{ $sale->total_item }}</td>
                                     <td>{{ $sale->total_price }}</td>

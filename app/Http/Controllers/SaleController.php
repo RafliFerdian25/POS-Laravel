@@ -77,6 +77,7 @@ class SaleController extends Controller
         $setting = Setting::first();
         $sales = Sale::whereMonth('created_at', date('m'))
             ->whereYear('created_at', date('Y'))
+            ->where('status', true)
             ->orderBy('id', 'desc')
             ->get();
         $report = Sale::whereMonth('created_at', date('m'))
