@@ -2,10 +2,12 @@
     aria-labelledby="modal-produk" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Pilih Produk</h4>
+            <div class="modal-header justify-content-between">
+                {{-- <div class=""> --}}
+                    <h4 class="modal-title">Pilih Produk</h4>
+                    <button type="button" class="close mr-1" data-bs-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true" class="fs-1">&times;</span></button>
+                    {{-- </div> --}}
             </div>
             <div class="modal-body">
                 <table class="table table-striped table-bordered table-produk">

@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         $title = 'POS TOKO | Kategori';
-        $categories = Category::all();
+        $categories = DB::table('categories')->leftJoin('products', 'categories.id', '=', 'products.category_id')->selectRaw('count(products.id) as jumlah, categories.id , categories.name')->groupBy('categories.id')->get();
         $merks = Merk::all();
         return view('category.index', compact('categories', 'title', 'merks'));
     }
@@ -97,7 +97,7 @@ class CategoryController extends Controller
         Category::whereId($id)->update($validated);
 
         // jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('barang.index')->with('success', 'Kategori berhasil diupdate');
+        return redirect()->route('category.index')->with('success', 'Kategori berhasil diupdate');
     }
     /**
      * Remove the specified resource from storage.
@@ -108,6 +108,6 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         Category::destroy($id);
-        return redirect()->route('barang.index')->with('success', 'Kategori berhasil dihapus');
+        return redirect()->route('category.index')->with('success', 'Kategori berhasil dihapus');
     }
 }

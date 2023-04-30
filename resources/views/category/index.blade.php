@@ -8,7 +8,7 @@
             <div class="page-title-wrapper col-3">
                 <div class="page-title-heading">
                     <div class="page-title-icon">
-                        <i class="pe-7s-wallet icon-gradient bg-plum-plate">
+                        <i class="pe-7s-folder icon-gradient bg-plum-plate">
                         </i>
                     </div>
                     <div>Kategori

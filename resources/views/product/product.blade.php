@@ -9,7 +9,7 @@
             <div class="page-title-wrapper col-3">
                 <div class="page-title-heading">
                     <div class="page-title-icon">
-                        <i class="pe-7s-wallet icon-gradient bg-plum-plate">
+                        <i class="pe-7s-drawer icon-gradient bg-plum-plate">
                         </i>
                     </div>
                     <div>Produk
@@ -47,6 +47,27 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
+                                @foreach ($products as $product)
+                                    <tr id="index_{{ $product->id }}">
+                                        <td>{{ $product->id }}</td>
+                                        <td>{{ $product->name }}</td>
+                                        <td>{{ $product->unit }}</td>
+                                        <td>{{ $product->purchase_price }}</td>
+                                        <td>{{ $product->selling_price }}</td>
+                                        <td>{{ $product->wholesale_price }}</td>
+                                        <td>{{ $product->stock }}</td>
+                                        <td>{{ $product->expired_date }}</td>
+                                        <td>
+                                            <a href="{{ route('barang.edit', $product->id) }}"
+                                                class="btn btn-link btn-lg float-left px-0" id="{{ $product->id }}"><i
+                                                    class="fa fa-edit"></i></a>
+                                            <a href="#"
+                                                onclick="deleteData('{{ route('barang.destroy', $product->id) }}','{{ $product->id }}')"
+                                                class="btn btn-link btn-lg float-right px-0 color__red1"
+                                                id="{{ $product->id }}"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 <tbody>
                                 </tbody>
                             </table>
@@ -61,15 +82,17 @@
 @endsection
 @push('scripts')
     <script>
-        function deleteData(url) {
+        let table;
+
+        function deleteData(url, idBarang) {
             if (confirm('Yakin ingin menghapus data terpilih?')) {
                 $.post(url, {
                         '_token': $("meta[name='csrf-token']").attr('content'),
                         '_method': 'delete'
                     })
                     .done((response) => {
-                        table.ajax.reload();
-                        alert('success');
+                        $(`#index_`+ idBarang).remove();
+                        alert('success') ;
                     })
                     .fail((errors) => {
                         alert('Tidak dapat menghapus data');
@@ -77,48 +100,50 @@
                     });
             }
         }
-        let table;
-
         $(function() {
-            table = $('#table__barang').DataTable({
-                responsive: true,
-                select: true,
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: '{{ route('barang.data') }}',
-                },
-                columns: [{
-                        data: 'id'
-                    },
-                    {
-                        data: 'name'
-                    },
-                    {
-                        data: 'unit'
-                    },
-                    {
-                        data: 'purchase_price'
-                    },
-                    {
-                        data: 'selling_price'
-                    },
-                    {
-                        data: 'wholesale_price'
-                    },
-                    {
-                        data: 'stock'
-                    },
-                    {
-                        data: 'expired_date'
-                    },
-                    {
-                        data: 'action',
-                        orderable: false,
-                        searchable: false
-                    }
-                ],
-            });
-        });
+            table = $('#table__barang').DataTable();
+        })
+
+        // $(function() {
+        //     table = $('#table__barang').DataTable({
+        //         responsive: true,
+        //         select: true,
+        //         processing: true,
+        //         serverSide: true,
+        //         ajax: {
+        //             url: '{{ route('barang.data') }}',
+        //         },
+        //         columns: [{
+        //                 data: 'id'
+        //             },
+        //             {
+        //                 data: 'name'
+        //             },
+        //             {
+        //                 data: 'unit'
+        //             },
+        //             {
+        //                 data: 'purchase_price'
+        //             },
+        //             {
+        //                 data: 'selling_price'
+        //             },
+        //             {
+        //                 data: 'wholesale_price'
+        //             },
+        //             {
+        //                 data: 'stock'
+        //             },
+        //             {
+        //                 data: 'expired_date'
+        //             },
+        //             {
+        //                 data: 'action',
+        //                 orderable: false,
+        //                 searchable: false
+        //             }
+        //         ],
+        //     });
+        // });
     </script>
 @endpush

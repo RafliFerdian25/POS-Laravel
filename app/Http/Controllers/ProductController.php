@@ -20,9 +20,8 @@ class ProductController extends Controller
     public function index()
     {
         $title = 'POS TOKO | Barang';
-        $product = Product::orderBy('name')->get();
-        $categories = DB::table('categories')->leftJoin('products', 'categories.id', '=', 'products.category_id')->selectRaw('count(products.id) as jumlah, categories.id as category_id, categories.name')->groupBy('categories.id')->get();
-        return view('product.product', compact('product', 'categories', 'title'));
+        $products = Product::Select("id","name", "unit", "purchase_price", "selling_price", "wholesale_price", "stock", "expired_date")->orderBy('name')->get();
+        return view('product.product', compact('products', 'title'));
     }
     public function data()
     {
@@ -78,10 +77,10 @@ class ProductController extends Controller
             'name' => 'required',
             'unit' => 'required',
             'contain' => 'required',
-            'discount' => 'required',
-            'purchase_price' => 'required',
-            'selling_price' => 'required',
-            'wholesale_price' => 'required',
+            'discount' => 'required|numeric|min:0|max:999999999',
+            'purchase_price' => 'required|numeric|min:0|max:999999999',
+            'selling_price' => 'required|numeric|min:0|max:999999999',
+            'wholesale_price' => 'required|numeric|min:0|max:999999999',
             'expired_date' => 'required',
             'stock' => 'required',
         ]);
@@ -98,7 +97,7 @@ class ProductController extends Controller
 
 
     /**
-     * Show the form for editing the specified resource.    
+     * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -158,10 +157,10 @@ class ProductController extends Controller
                 'name' => 'required',
                 'unit' => 'required',
                 'contain' => 'required',
-                'discount' => 'required',
-                'purchase_price' => 'required',
-                'selling_price' => 'required',
-                'wholesale_price' => 'required',
+                'discount' => 'required|numeric|min:0|max:999999999',
+                'purchase_price' => 'required|numeric|min:0|max:999999999',
+                'selling_price' => 'required|numeric|min:0|max:999999999',
+                'wholesale_price' => 'required|numeric|min:0|max:999999999',
                 'expired_date' => 'required',
                 'stock' => 'required',
             ]);
@@ -173,10 +172,10 @@ class ProductController extends Controller
                 'name' => 'required',
                 'unit' => 'required',
                 'contain' => 'required',
-                'discount' => 'required',
-                'purchase_price' => 'required',
-                'selling_price' => 'required',
-                'wholesale_price' => 'required',
+                'discount' => 'required|numeric|min:0|max:999999999',
+                'purchase_price' => 'required|numeric|min:0|max:999999999',
+                'selling_price' => 'required|numeric|min:0|max:999999999',
+                'wholesale_price' => 'required|numeric|min:0|max:999999999',
                 'expired_date' => 'required',
                 'stock' => 'required',
             ]);

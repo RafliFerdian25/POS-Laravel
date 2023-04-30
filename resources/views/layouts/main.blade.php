@@ -34,7 +34,7 @@
         <!-- Header -->
         <div class="app-header header-shadow">
             <div class="app-header__logo">
-                <div class="logo-src"></div>
+                <div class="logo-src fw-bolder fs-4">R-POS</div>
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
@@ -66,7 +66,7 @@
                 </span>
             </div>
             <div class="app-header__content">
-                <div class="app-header-left">
+                {{-- <div class="app-header-left">
                     <div class="search-wrapper">
                         <div class="input-holder">
                             <input type="text" class="search-input" placeholder="Type to search">
@@ -94,7 +94,7 @@
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> --}}
                 <div class="app-header-right">
                     <div class="header-btn-lg pr-0">
                         <div class="widget-content p-0">
@@ -146,15 +146,15 @@
                 <div class="scrollbar-sidebar">
                     <div class="app-sidebar__inner">
                         <ul class="vertical-nav-menu">
-                            <li>
+                            {{-- <li>
                                 <a href="index.html" id="navbar__dashboard">
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Dashboard
                                 </a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="{{ route('penjualan.index') }}" id="navbar__kasir">
-                                    <i class="metismenu-icon pe-7s-diamond"></i>
+                                    <i class="metismenu-icon pe-7s-cash"></i>
                                     Kasir
                                 </a>
                             </li>
@@ -175,13 +175,13 @@
                             </li>
                             <li>
                                 <a href="{{ url('/barang') }}" id="navbar__barang">
-                                    <i class="metismenu-icon pe-7s-display2"></i>
+                                    <i class="metismenu-icon pe-7s-drawer"></i>
                                     Barang
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ url('/kategori') }}"  id="navbar__kategori">
-                                    <i class="metismenu-icon pe-7s-note2"></i>
+                                    <i class="metismenu-icon pe-7s-folder"></i>
                                     Kategori
                                 </a>
                             </li>
@@ -189,24 +189,6 @@
                                 <a href="{{ url('/supplier') }}" id="navbar__supplier">
                                     <i class="metismenu-icon pe-7s-car">
                                     </i>Supplier
-                                </a>
-                            </li>
-                            <li>
-                                <a href="forms-layouts.html">
-                                    <i class="metismenu-icon pe-7s-eyedropper">
-                                    </i>Forms Layouts
-                                </a>
-                            </li>
-                            <li>
-                                <a href="forms-validation.html">
-                                    <i class="metismenu-icon pe-7s-pendrive">
-                                    </i>Forms Validation
-                                </a>
-                            </li>
-                            <li>
-                                <a href="charts-chartjs.html">
-                                    <i class="metismenu-icon pe-7s-graph2">
-                                    </i>ChartJS
                                 </a>
                             </li>
                         </ul>
