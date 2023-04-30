@@ -176,7 +176,7 @@
                             <li>
                                 <a href="{{ url('/barang') }}" id="navbar__barang">
                                     <i class="metismenu-icon pe-7s-drawer"></i>
-                                    Barang
+                                    Produk
                                 </a>
                             </li>
                             <li>
