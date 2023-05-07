@@ -61,7 +61,7 @@ class SaleController extends Controller
         $setting = Setting::first();
         // dd($setting);
         $penjualan = Sale::find(session('id_penjualan'));
-        if (! $penjualan) {
+        if (!$penjualan) {
             abort(404);
         }
         $detail = SaleDetail::with('product')
@@ -85,5 +85,18 @@ class SaleController extends Controller
             ->selectRaw('sum(total_price) as income, sum(profit) as profit, sum(id) as total_transaction, sum(total_item) as total_item')
             ->get();
         return view('report.monthly', compact('setting', 'sales', 'title', 'report'));
+    }
+
+    public function showReport($id)
+    {
+        $title = 'POS TOKO | Laporan';
+        $setting = Setting::first();
+        $sales = Sale::join('sale_details', 'sales.id', '=', 'sale_details.sale_id')
+            ->join('products', 'sale_details.product_id', '=', 'products.id')
+            ->select('sales.id', 'sales.created_at', 'sale_details.*', 'products.name as product_name', 'products.purchase_price as purchase_price', 'products.selling_price as selling_price')
+            ->where("sales.id", $id)
+            ->get();
+        // dd($sales);
+        return view('report.show', compact('setting', 'sales', 'title'));
     }
 }

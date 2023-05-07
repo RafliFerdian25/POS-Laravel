@@ -41,4 +41,5 @@ Route::resource('/supplier', SupplierController::class)->except('show');
 Route::get('/', [SaleDetailController::class, 'index'])->name('penjualan.index');
 
 // Laporan
+Route::get('/laporan/{sale}/show', [SaleController::class, 'showReport'])->name('laporan.show');
 Route::get('/laporan/bulanan', [SaleController::class, 'laporanBulanan'])->name('laporan.bulanan');

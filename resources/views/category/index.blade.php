@@ -47,7 +47,7 @@
                                         <tr>
                                             <td>{{ $category->id }}</td>
                                             <td>{{ $category->name }}</td>
-                                            <td>{{ $category->jumlah }}</td>
+                                            <td>{{ $category->products_count }}</td>
                                             <td>
                                                 <div class="d-flex justify-content-center">
                                                     <a href="{{ route('kategori.edit', $category->id) }}" class="btn btn-link btn-lg float-left px-0"><i class="fa fa-edit"></i></a>

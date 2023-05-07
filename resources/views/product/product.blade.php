@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+{{-- @dd($products[0]->id) --}}
     <!-- Section Layouts  -->
     <div class="app-main__inner">
         <!-- Barang section -->

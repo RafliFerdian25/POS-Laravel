@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         $title = 'POS TOKO | Kategori';
-        $categories = DB::table('categories')->leftJoin('products', 'categories.id', '=', 'products.category_id')->selectRaw('count(products.id) as jumlah, categories.id , categories.name')->groupBy('categories.id')->get();
+        $categories = Category::withCount('products')->get();
         $merks = Merk::all();
         return view('category.index', compact('categories', 'title', 'merks'));
     }

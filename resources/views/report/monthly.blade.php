@@ -126,7 +126,7 @@
                                     <td>{{ $sale->total_price }}</td>
                                     <td>{{ $sale->profit }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-primary">Detail</a>
+                                        <a href="{{ route('laporan.show', $sale->id) }}" class="btn btn-primary">Detail</a>
                                     </td>
                                 </tr>
                             @endforeach

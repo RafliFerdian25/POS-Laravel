@@ -20,12 +20,12 @@ class ProductController extends Controller
     public function index()
     {
         $title = 'POS TOKO | Barang';
-        $products = Product::Select("id","name", "unit", "purchase_price", "selling_price", "wholesale_price", "stock", "expired_date")->orderBy('name')->get();
+        $products = Product::Select("id","name", "unit", "purchase_price", "selling_price", "wholesale_price", "stock", "expired_date")->get();
         return view('product.product', compact('products', 'title'));
     }
     public function data()
     {
-        $product = Product::get();
+        $product = Product::Select("id","name", "unit", "purchase_price", "selling_price", "wholesale_price", "stock", "expired_date")->get();
         $data = array();
         foreach ($product as $item) {
             $row = array();

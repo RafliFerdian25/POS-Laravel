@@ -24,6 +24,10 @@ class Product extends Model
         'stock',
     ];
 
+    protected $casts = [
+        'id' => 'string',
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -53,5 +57,5 @@ class Product extends Model
     {
         return $this->hasMany(PurchaseDetail::class);
     }
-    
+
 }
